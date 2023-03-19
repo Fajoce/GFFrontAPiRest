@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
-import { Usuarios } from 'src/app/Models/usuarios';
-import { UsuarioService } from 'src/app/service/usuario.service';
+import { Technicals } from 'src/app/Models/tecnicos';
+import { UsuarioService } from 'src/app/service/tecnicos.service';
 
 @Component({
   selector: 'app-detalle-usuarios',
@@ -11,8 +11,8 @@ import { UsuarioService } from 'src/app/service/usuario.service';
 })
 export class DetalleUsuariosComponent {
   id!:number;
-  user!: Usuarios;
-  user$! :Observable<Usuarios>;
+  user!: Technicals;
+  user$! :Observable<Technicals>;
 constructor(private userservice: UsuarioService,
   private activatedRoute: ActivatedRoute){
     this.id = Number(this.activatedRoute.snapshot.paramMap.get('id'));

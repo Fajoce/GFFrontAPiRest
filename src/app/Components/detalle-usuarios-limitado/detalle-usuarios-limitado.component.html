@@ -1,14 +1,16 @@
 <div id="print-section" class="p-2"> 
     <mat-card id="card">
+      
         <div *ngIf="user$ | async as user" class="container text-center" style="width:50% ;">
-            <mat-card-title>Id: {{user.userId}}</mat-card-title>
+          <h2 class="text-info">Detalle De Tècnicos Registrados en el Sistema</h2>
+          <mat-card-title>Id: {{user.technicalId}}</mat-card-title>
             <mat-card-content>
-                <h3>Nombre Completo: {{user.userName}} {{user.userLastName}}</h3>
-                <h3>Dirección: {{user.userAdress}}</h3>
-                <h3>Tipo usuario: {{user.typeOfUserName}}</h3>
-                <h3>Telefono: {{user.userTelephone}}</h3>
-                <h3>Correo electrónico: {{user.userEmail}}</h3>   
-                <h3>Contraseña: **{{user.password}}**</h3>              
+                <h3>Nombre Completo: {{user.technicalFullName}}</h3>
+                <h3>Còdigo: {{user.technicalCode}}</h3>
+                <h3>Salario: {{user.technicalSalary}}</h3>
+                <h3>Còdigo Sucursal: {{user.branchOfficeCode}}</h3>
+                <h3>Nombre Sucursal: {{user.branchOfficeName}}</h3>   
+                           
             </mat-card-content>  
                       
         </div>

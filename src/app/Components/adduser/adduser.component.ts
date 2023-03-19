@@ -1,14 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, RouterLink,Route, Router } from '@angular/router';
-import { Usuarios } from 'src/app/Models/usuarios';
-import { UsuarioService } from 'src/app/service/usuario.service';
-
-interface Types {
-  value: number;
-  viewValue: string;
-}
-
+import { Technicals } from 'src/app/Models/tecnicos';
+import { UsuarioService } from 'src/app/service/tecnicos.service';
+import { SucursalesService } from 'src/app/service/sucursales.service';
+import { Sucursales } from 'src/app/Models/sucursales';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-adduser',
@@ -19,25 +16,20 @@ export class AdduserComponent {
   forms!: FormGroup
   id!:number;
   titulo:string = 'Add Users';
-
-  types: Types[] = [
-    {value: 1, viewValue: 'Adm'},
-    {value: 2, viewValue: 'Limitado'},
-    {value: 3, viewValue: 'SuperAdm'},
-  ];
+  branchList$!: Observable<any>
+  @Input()  pattern!: string | RegExp
 
   constructor(private fg: FormBuilder, private userservice:
-    UsuarioService,
+    UsuarioService,private branchOfficeService: SucursalesService,
     private activeRoute: ActivatedRoute,
     private router: Router){
       this.forms = this.fg.group({
-        userName: ['', Validators.required],
-        userLastName : ['', Validators.required],
-        typeOfUserId:[0, Validators.required],
-        userAdress: [''],
-        userTelephone: [''],
-        userEmail:[''],
-        password:[]
+        technicalFullName: ['', [Validators.required,
+        Validators.maxLength(30)]],
+        technicalCode : ['', [Validators.required,
+        Validators.maxLength(4)]],          
+        branchOfficeCode: ['',Validators.required],
+        technicalSalary:['', Validators.required],
     });
   this.id = Number(this.activeRoute.snapshot.paramMap.get('id'));
 
@@ -47,54 +39,52 @@ export class AdduserComponent {
       this.titulo = 'Edit Users';
       this.getUsers(this.id);
     }
+    this.branchList$ = this.branchOfficeService.getBranches();
   }
-
+ 
   getUsers(id:number){
     this.userservice.getUsersById(id).subscribe(data=>{
     this.forms.patchValue({
-      userName: data.userName,
-      userLastName: data.userLastName,
-      typeOfUserId: data.typeOfUserId,
-      userAdress: data.userAdress,
-      userTelephone: data.userTelephone,
-      userEmail: data.userEmail,
-      password:data.password
-       })
+      technicalFullName: data.technicalFullName,
+      technicalCode: data.technicalCode,
+      technicalSalary: data.technicalSalary,
+      branchOfficeCode: data.branchOfficeCode    
+      })
     })
     }
 
     AddEditUser(){
-      const user: Usuarios = {
-        userName : this.forms.value.userName,
-        userLastName : this.forms.value.userLastName,
-        userAdress: this.forms.value.userAdress,
-        typeOfUserId: this.forms.value.typeOfUserId,
-        userTelephone: this.forms.value.userTelephone,
-        userEmail: this.forms.value.userEmail,
-        password: this.forms.value.password
+      const user: Technicals = {
+        technicalFullName : this.forms.value.technicalFullName,
+        technicalCode : this.forms.value.technicalCode,
+        technicalSalary: this.forms.value.technicalSalary,
+        branchOfficeCode: this.forms.value.branchOfficeCode,
+         
       }
       if(this.id != 0){
-        user.userId = this.id,
+        user.technicalId = this.id,
       this.EditUser(this.id,user)
-      alert('usario editado exitosamente!')
+      alert('Tecnico editado exitosamente!')
       }
       else{
         this.AddUser(user);
-        alert('usario creado exitosamente!')
+        alert('Tecnico creado exitosamente!')
       }
       }
-      AddUser(user:Usuarios){
+      AddUser(user:Technicals){
       this.userservice.addUsers(user).subscribe(data=>{
         console.log(data);
         this.router.navigate(['/Usuarios']);
       })
       }
       
-      EditUser(id:number, user: Usuarios){
+      EditUser(id:number, user: Technicals){
         this.userservice.updateUsers(id,user).subscribe(data=>{
           console.log(data);
           this.router.navigate(['/Usuarios']);  
         })
       }
+
+      
 
 }

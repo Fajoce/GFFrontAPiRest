@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
-import { Usuarios } from 'src/app/Models/usuarios';
-import { UsuarioService } from 'src/app/service/usuario.service';
+import { Technicals } from 'src/app/Models/tecnicos';
+import { UsuarioService } from 'src/app/service/tecnicos.service';
 
 @Component({
   selector: 'app-detalle-usuarios-limitado',
@@ -10,17 +10,18 @@ import { UsuarioService } from 'src/app/service/usuario.service';
   styleUrls: ['./detalle-usuarios-limitado.component.css']
 })
 export class DetalleUsuariosLimitadoComponent {
-  name!:string;
-  user!: Usuarios;
-  user$! :Observable<Usuarios>;
+  id!:number;
+  user!: Technicals;
+  user$! :Observable<Technicals>;
 constructor(private userservice: UsuarioService,
   private activatedRoute: ActivatedRoute){
-    this.name = String(this.activatedRoute.snapshot.paramMap.get('name'));
+    this.id = Number(this.activatedRoute.snapshot.paramMap.get('id'));
 }
 
 ngOnInit(){
  //this.getInspectionById();
- this.user$ = this.userservice.getUsersName(this.name);
+ this.user$ = this.userservice.getUsersById(this.id);
+ console.log(this.user$);
 }
 getUsersById(){
  /* return this.inspectiontypeservice.getInspectionTypebyId(this.id).subscribe(data=>{

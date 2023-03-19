@@ -1,26 +1,16 @@
 <div class="container text-center bg-primary display-2">
-
   <button mat-button [matMenuTriggerFor]="beforeMenu">
-    <mat-icon>home</mat-icon>Home</button>
+    <mat-icon>group</mat-icon>Tecnicos</button>
   <mat-menu #beforeMenu="matMenu" xPosition="before">
-    <button mat-menu-item routerLink='/Home'>Quienes somos</button>
+    <button mat-menu-item routerLink='/Usuarios'>Listado</button>
   </mat-menu>
-  
-<button mat-button [matMenuTriggerFor]="beforeMenu" *ngIf="enabled">Usuarios</button>
-<mat-menu #beforeMenu="matMenu" xPosition="before">
-  <button mat-menu-item routerLink=''>List</button>
-  
+  <mat-icon>assignment</mat-icon>
+<button mat-button [matMenuTriggerFor]="aboveMenu">Remisiones</button>
+
+<mat-menu #aboveMenu="matMenu" yPosition="above">
+  <button mat-menu-item routerLink='/remission'>Listado</button>  
 </mat-menu>
 
-<button mat-button [matMenuTriggerFor]="aboveMenu">
-  <mat-icon>power_off</mat-icon>Log Out</button>
-<mat-menu #aboveMenu="matMenu" yPosition="below">
-  <button mat-menu-item routerLink='/Login'>Log Out</button>
-</mat-menu>
 </div>
-<div  class="text-center">
-  <p>
-    <mat-icon>group</mat-icon> Ud esta en el sistema como:{{textoPadre}}
-  </p>
-</div>
+
 

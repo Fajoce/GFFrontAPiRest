@@ -1,40 +1,36 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Usuarios } from '../Models/usuarios';
+import { Technicals } from '../Models/tecnicos';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UsuarioService {
-  readonly url = 'https:/localhost:44303/api';
+  readonly url = 'https://localhost:44394/api';
 
   constructor(private httpclient: HttpClient) { }
 
   //Get All users
   getUsers():Observable<any[]>{
-    return this.httpclient.get<any[]>(this.url+'/users');
+    return this.httpclient.get<any[]>(this.url+'/Technicals');
   }
   //Get users By id
-  getUsersById(id:number):Observable<Usuarios>{
-    return this.httpclient.get<Usuarios>(this.url+'/users/'+id);
+  getUsersById(id:number):Observable<Technicals>{
+    return this.httpclient.get<Technicals>(this.url+'/Technicals/'+id);
   }
 
-    //Get users By name
-    getUsersName(name:string):Observable<Usuarios>{
-      return this.httpclient.get<Usuarios>(this.url+'/users/name/'+name);
-    }
   //create users
   addUsers(data:any){
-    return this.httpclient.post(this.url+'/users',data);
+    return this.httpclient.post(this.url+'/Technicals',data);
   }
   //update user by ID
   updateUsers(id:number,data:any){
-    return this.httpclient.put(this.url + `/users/${id}`,data);
+    return this.httpclient.put(this.url + `/Technicals/${id}`,data);
   }
 //Delete user by ID
-  deleteusers(id:number){
-    return this.httpclient.delete(this.url+`/users/${id}`);
+  deleteTechnical(id:string){
+    return this.httpclient.delete(this.url+`/Technicals/${id}`);
   }
 
   //login
