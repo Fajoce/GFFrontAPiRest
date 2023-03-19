@@ -68,23 +68,24 @@ export class AddRemissionComponent {
       alert('Remisión editada exitosamente!')
       }
       else{
-        this.AddRemission(remission);
-        alert('Remisión creada exitosamente!')
+        this.AddRemission(remission);        
         this.router.navigate(['/remission']);
       }
       }
       AddRemission(remission:Remision){
-      this.remissionservice.addRemissions(remission).subscribe(res=>{
-        if(res=="Failure!")  {
-          alert("Error")
-        }     
+      this.remissionservice.addRemissions(remission).subscribe(data=>{
+        console.log(data);
+        alert('Remisión creada exitosamente!');               
+      }, err=>{console.error(err); 
+        alert('Este elemento ya esta asignado a este técnico!')
+        this.router.navigate(['/AddRemissions']);
+           
       })
-      }
-      
+    }
       EditRemission(id:number, remission: Remision){
         this.remissionservice.updateRemissions(id,remission).subscribe(data=>{
           console.log(data);
-          this.router.navigate(['/remision']);  
+          this.router.navigate(['/remission']);  
         })
         
       }
