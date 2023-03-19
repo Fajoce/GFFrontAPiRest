@@ -74,9 +74,10 @@ export class AddRemissionComponent {
       }
       }
       AddRemission(remission:Remision){
-      this.remissionservice.addRemissions(remission).subscribe(data=>{
-        console.log(data);
-        
+      this.remissionservice.addRemissions(remission).subscribe(res=>{
+        if(res=="Failure!")  {
+          alert("Error")
+        }     
       })
       }
       
