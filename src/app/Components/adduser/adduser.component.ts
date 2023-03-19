@@ -67,14 +67,19 @@ export class AdduserComponent {
       alert('Tecnico editado exitosamente!')
       }
       else{
-        this.AddUser(user);
-        alert('Tecnico creado exitosamente!')
+        this.AddUser(user);  
+        this.router.navigate(['/Usuarios']);      
       }
       }
       AddUser(user:Technicals){
       this.userservice.addUsers(user).subscribe(data=>{
         console.log(data);
-        this.router.navigate(['/Usuarios']);
+        alert('Tecnico creado exitosamente!')
+        
+      },err =>{
+        console.log(err);
+        alert('Esta sucursal ya fue asignada a este técnico!')
+        this.router.navigate(['/AddUsers']);
       })
       }
       
