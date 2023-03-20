@@ -7,7 +7,7 @@ import { RemisionService } from 'src/app/service/remision.service';
 import { Technicals } from 'src/app/Models/tecnicos';
 import { UsuarioService } from 'src/app/service/tecnicos.service';
 import { ElementosService } from 'src/app/service/elementos.service';
-import { ToastrService } from 'ngx-toastr/public_api';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-add-remission',
@@ -26,7 +26,8 @@ export class AddRemissionComponent {
     RemisionService,private technicalService: UsuarioService,
     private itemService: ElementosService,
     private activeRoute: ActivatedRoute,
-    private router: Router){
+    private router: Router,
+    private toastr:ToastrService){
       this.forms = this.fg.group({
         remissionDate: ['', Validators.required],
         technicalCode : ['', [Validators.required,
@@ -66,7 +67,7 @@ export class AddRemissionComponent {
       if(this.id != 0){
         remission.remissionId = this.id,
       this.EditRemission(this.id,remission)
-      alert('Remisión editada exitosamente!')
+      this.toastr.success('Remisión editada exitosamente!')
       }
       else{
         this.AddRemission(remission);        
@@ -76,9 +77,9 @@ export class AddRemissionComponent {
       AddRemission(remission:Remision){
       this.remissionservice.addRemissions(remission).subscribe(data=>{
         console.log(data);
-        alert('Remisión creada exitosamente!');               
+        this.toastr.success('Remisión creada exitosamente!');               
       }, err=>{console.error(err); 
-        alert('Este elemento ya esta asignado a este técnico!')
+        this.toastr.error('Este elemento ya esta asignado a este técnico!')
         this.router.navigate(['/AddRemissions']);
            
       })
