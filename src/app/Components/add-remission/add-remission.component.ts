@@ -86,9 +86,6 @@ export class AddRemissionComponent {
         this.remissionservice.updateRemissions(id,remission).subscribe(data=>{
           console.log(data);
           this.router.navigate(['/remission']);  
-        })
-        
-      }
-
-    
+        })       
+      }    
 }

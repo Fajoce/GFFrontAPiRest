@@ -47,4 +47,5 @@ export class UsuariosComponent {
       ngAfterViewInit() {
         this.dataSource.paginator = this.paginator;
       }
+     
 }

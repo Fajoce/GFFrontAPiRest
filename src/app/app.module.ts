@@ -26,7 +26,7 @@ import { AppComponent } from './app.component';
 import { MenuComponent } from './Components/menu/menu.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatGridListModule} from '@angular/material/grid-list';
-import { AdduserComponent } from './Components/adduser/adduser.component';
+import { AdduserComponent } from './Components/tecnicos/adduser.component';
 
 import { UsuariosComponent } from './Components/technicals/usuarios.component';
 import { DetalleUsuariosComponent } from './Components/detalle-usuarios/detalle-usuarios.component';

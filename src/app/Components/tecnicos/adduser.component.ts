@@ -17,6 +17,7 @@ export class AdduserComponent {
   id!:number;
   titulo:string = 'Add Users';
   branchList$!: Observable<any>
+  techList$!: Observable<any>
   @Input()  pattern!: string | RegExp
 
   constructor(private fg: FormBuilder, private userservice:
@@ -40,6 +41,7 @@ export class AdduserComponent {
       this.getUsers(this.id);
     }
     this.branchList$ = this.branchOfficeService.getBranches();
+    this.techList$ = this.userservice.getUsers();
   }
  
   getUsers(id:number){
@@ -75,7 +77,7 @@ export class AdduserComponent {
       this.userservice.addUsers(user).subscribe(data=>{
         console.log(data);
         alert('Tecnico creado exitosamente!')
-        
+       location.reload();
       },err =>{
         console.log(err);
         alert('Esta sucursal ya fue asignada a este técnico!')
