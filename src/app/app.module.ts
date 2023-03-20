@@ -19,8 +19,7 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import {MatRadioModule} from '@angular/material/radio';
-
-
+import { ToastrModule } from 'ngx-toastr';
 
 import { AppComponent } from './app.component';
 import { MenuComponent } from './Components/menu/menu.component';
@@ -84,7 +83,8 @@ const routes :Routes = [
     MatDatepickerModule,
     MatButtonToggleModule,
     MatRadioModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    ToastrModule.forRoot()
   ],
   providers: [CookieService],
   bootstrap: [AppComponent]

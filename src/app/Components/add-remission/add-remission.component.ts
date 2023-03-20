@@ -7,6 +7,7 @@ import { RemisionService } from 'src/app/service/remision.service';
 import { Technicals } from 'src/app/Models/tecnicos';
 import { UsuarioService } from 'src/app/service/tecnicos.service';
 import { ElementosService } from 'src/app/service/elementos.service';
+import { ToastrService } from 'ngx-toastr/public_api';
 
 @Component({
   selector: 'app-add-remission',

@@ -31,15 +31,5 @@ export class UsuarioService {
 //Delete user by ID
   deleteTechnical(id:string){
     return this.httpclient.delete(this.url+`/Technicals/${id}`);
-  }
-
-  //login
-  loginUser(data: Array<any>){
-    return this.httpclient.post(this.url+'/users/Logearse',{
-      userName:data[0],
-      password:data[1]
-    },{
-      responseType:'text',
-    });
-  } 
+  }  
 }

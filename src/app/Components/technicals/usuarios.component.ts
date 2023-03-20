@@ -3,7 +3,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { Technicals } from 'src/app/Models/tecnicos';
 import { UsuarioService } from 'src/app/service/tecnicos.service';
-
+import { ToastrService } from 'ngx-toastr';
 
 const users: Technicals[] = [];
 
@@ -16,8 +16,10 @@ export class UsuariosComponent {
   displayedColumns: string[] = ['technicalId', 'technicalFullName','technicalCode','technicalSalary','branchOfficeCode','branchOfficeName','acciones'];
   dataSource = new MatTableDataSource<Technicals>(users);
   @ViewChild(MatPaginator) paginator!: MatPaginator;
+  eliminar!: boolean
 
-  constructor(private userservice: UsuarioService
+  constructor(private userservice: UsuarioService,
+   private toastr: ToastrService
     ){}
 
   getAllUsers(){
@@ -25,16 +27,14 @@ export class UsuariosComponent {
       console.log(res);
       this.dataSource.data = res;
     });
-  }
-
- 
+  } 
   ngOnInit(){
     this.getAllUsers();
     }
 
     deleteUsers(id:string){
-      return this.userservice.deleteTechnical(id).subscribe(data=>{
-       /*this.toast.success('Registro eliminado satisfactoriamente!');*/
+       return this.userservice.deleteTechnical(id).subscribe(data=>{
+       this.toastr.success('Registro eliminado satisfactoriamente!');
        alert('Registro ' + id + ' eliminado con exito')
       this.getAllUsers();
       })
@@ -46,6 +46,6 @@ export class UsuariosComponent {
     }
       ngAfterViewInit() {
         this.dataSource.paginator = this.paginator;
-      }
+      }      
      
 }

@@ -6,6 +6,7 @@ import { UsuarioService } from 'src/app/service/tecnicos.service';
 import { SucursalesService } from 'src/app/service/sucursales.service';
 import { Sucursales } from 'src/app/Models/sucursales';
 import { Observable } from 'rxjs';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-adduser',
@@ -23,7 +24,8 @@ export class AdduserComponent {
   constructor(private fg: FormBuilder, private userservice:
     UsuarioService,private branchOfficeService: SucursalesService,
     private activeRoute: ActivatedRoute,
-    private router: Router){
+    private router: Router,
+    private toastr:ToastrService){
       this.forms = this.fg.group({
         technicalFullName: ['', [Validators.required,
         Validators.maxLength(30)]],
@@ -66,7 +68,7 @@ export class AdduserComponent {
       if(this.id != 0){
         user.technicalId = this.id,
       this.EditUser(this.id,user)
-      alert('Tecnico editado exitosamente!')
+      this.toastr.success('Técnico editado exitosamente!')
       }
       else{
         this.AddUser(user);  
@@ -76,11 +78,11 @@ export class AdduserComponent {
       AddUser(user:Technicals){
       this.userservice.addUsers(user).subscribe(data=>{
         console.log(data);
-        alert('Tecnico creado exitosamente!')
+        this.toastr.success('Tecnico creado exitosamente!')
        location.reload();
       },err =>{
         console.log(err);
-        alert('Esta sucursal ya fue asignada a este técnico!')
+        this.toastr.error('Esta sucursal ya fue asignada a este técnico!')
         this.router.navigate(['/AddUsers']);
       })
       }
