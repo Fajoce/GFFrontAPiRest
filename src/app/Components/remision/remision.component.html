@@ -6,8 +6,8 @@
       <mat-label>Filter</mat-label>
       <input matInput (keyup)="applyFilter($event)" placeholder="nombre" #input class="bg-white">
     </mat-form-field>
-    <button routerLink="/AddRemissions" mat-raised-button class="float-end mb-3">Crear</button>
-   
+    <button routerLink="/AddRemissions" mat-raised-button class="float-end me-2 bg-primary">Crear</button>
+    <button printSectionId="print-section" ngxPrint mat-raised-button class="float-end  me-2 bg-primary">Print</button>
     <div id="print-section" class="p-2"> 
        <table mat-table [dataSource]="dataSource" class="mat-elevation-z10">
   
@@ -76,5 +76,5 @@
     </mat-paginator>    
   </div>
 </div>
-<button printSectionId="print-section" ngxPrint mat-raised-button style="left: 125px;">Print</button>
+
 
