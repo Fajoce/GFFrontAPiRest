@@ -4,6 +4,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { Technicals } from 'src/app/Models/tecnicos';
 import { UsuarioService } from 'src/app/service/tecnicos.service';
 import { ToastrService } from 'ngx-toastr';
+import { SpinnerService } from 'src/app/service/spinner.service';
 
 const users: Technicals[] = [];
 
@@ -19,7 +20,8 @@ export class UsuariosComponent {
   eliminar!: boolean
 
   constructor(private userservice: UsuarioService,
-   private toastr: ToastrService
+   private toastr: ToastrService,
+   private spinnerService: SpinnerService
     ){}
 
   getAllUsers():void{
@@ -32,6 +34,7 @@ export class UsuariosComponent {
     this.userservice.getUsers();
   }
   ngOnInit(){
+    this.spinnerService.callSpinner();
     this.getAllUsers();
     }
 

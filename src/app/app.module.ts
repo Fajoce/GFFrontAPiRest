@@ -21,6 +21,8 @@ import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import {MatRadioModule} from '@angular/material/radio';
 import { ToastrModule } from 'ngx-toastr';
 import { NgxUiLoaderModule } from 'ngx-ui-loader';
+import { NgxSpinnerModule } from 'ngx-spinner';
+
 
 import { AppComponent } from './app.component';
 import { MenuComponent } from './Components/menu/menu.component';
@@ -94,7 +96,9 @@ const routes :Routes = [
       timeOut: 5000,
       progressBar: true
     }),
-    NgxUiLoaderModule
+    NgxUiLoaderModule,
+    NgxSpinnerModule,
+  
   ],
   providers: [CookieService],
   bootstrap: [AppComponent]
