@@ -15,6 +15,10 @@ export class RemisionService {
   getRemissions():Observable<any[]>{
     return this.httpclient.get<any[]>(this.url+'/remissions');
   }
+   //Get Items Resume 
+   getResume():Observable<any[]>{
+    return this.httpclient.get<any[]>(this.url+'/remissions/resume');
+  }
   //Get remission By id
   getRemissionsById(id:number):Observable<Remision>{
     return this.httpclient.get<Remision>(this.url+'/remissions/'+id);

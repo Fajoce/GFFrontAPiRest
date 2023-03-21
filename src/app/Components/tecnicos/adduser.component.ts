@@ -7,6 +7,7 @@ import { SucursalesService } from 'src/app/service/sucursales.service';
 import { Sucursales } from 'src/app/Models/sucursales';
 import { Observable } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
+import { SpinnerService } from 'src/app/service/spinner.service';
 
 @Component({
   selector: 'app-adduser',
@@ -25,7 +26,9 @@ export class AdduserComponent {
     UsuarioService,private branchOfficeService: SucursalesService,
     private activeRoute: ActivatedRoute,
     private router: Router,
-    private toastr:ToastrService){
+    private toastr:ToastrService,
+    private spinnerService: SpinnerService
+    ){
       this.forms = this.fg.group({
         technicalFullName: ['', [Validators.required,
         Validators.maxLength(30)]],

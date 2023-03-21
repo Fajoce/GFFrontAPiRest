@@ -39,6 +39,7 @@ import { RemisionComponent } from './Components/remision/remision.component';
 import { AddRemissionComponent } from './Components/add-remission/add-remission.component';
 import { ResumenPorSucursalesComponent } from './Components/resumen-por-sucursales/resumen-por-sucursales.component';
 import { InterceptorService } from './service/interceptor.service';
+import { InformeItemsComponent } from './Components/informe-items/informe-items.component';
 
 const routes :Routes = [
   {path:'', redirectTo: 'Usuarios', pathMatch: 'full'},
@@ -50,6 +51,7 @@ const routes :Routes = [
   {path:'AddRemissions', component : AddRemissionComponent },
   {path:'editRemission/:id', component : AddRemissionComponent},
   {path:'ResumeBranch', component : ResumenPorSucursalesComponent},
+  {path:'ResumeItem', component : InformeItemsComponent},
   {path:'Menu', component: MenuComponent},
   {path:'**', redirectTo: 'Usuarios', pathMatch: 'full'}
 ]
@@ -66,7 +68,8 @@ const routes :Routes = [
     DetalleUsuariosLimitadoComponent,
     RemisionComponent,
     AddRemissionComponent,
-    ResumenPorSucursalesComponent
+    ResumenPorSucursalesComponent,
+    InformeItemsComponent
   ],
   imports: [
     BrowserModule,
