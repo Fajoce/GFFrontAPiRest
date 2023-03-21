@@ -22,12 +22,15 @@ export class UsuariosComponent {
    private toastr: ToastrService
     ){}
 
-  getAllUsers(){
+  getAllUsers():void{
     this.userservice.getUsers().subscribe(res =>{
       console.log(res);
       this.dataSource.data = res;
     });
   } 
+  get(){
+    this.userservice.getUsers();
+  }
   ngOnInit(){
     this.getAllUsers();
     }
@@ -39,7 +42,7 @@ export class UsuariosComponent {
       this.getAllUsers();
       })
     }
-
+    
     applyFilter(event: Event) {
       const filterValue = (event.target as HTMLInputElement).value;
       this.dataSource.filter = filterValue.trim().toLowerCase();

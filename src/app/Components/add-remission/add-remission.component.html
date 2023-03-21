@@ -10,7 +10,8 @@
                 <mat-form-field appearance="outline" class="mat-form-field">
                 <mat-label>Fecha</mat-label>
                 <input  formControlName="remissionDate" matInput autocomplete="off">               
-                </mat-form-field>
+              
+              </mat-form-field>          
             </mat-grid-tile >
             
         <mat-grid-tile [colspan]="1">
@@ -38,7 +39,7 @@
                 <mat-form-field appearance="outline" class="mat-form-field">
                 <mat-label>Cantidad</mat-label>
                 <input formControlName="remissionQuantity" type="number" min="1" max="10" id="numero" matInput autocomplete="off">               
-               </mat-form-field>
+               </mat-form-field>               
             </mat-grid-tile>    
             <mat-grid-tile [colspan]="2"> 
               <button [disabled]="forms.invalid" type="submit" class="btn btn-primary">Aceptar</button>

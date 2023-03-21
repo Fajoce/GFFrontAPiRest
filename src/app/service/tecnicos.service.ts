@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Technicals } from '../Models/tecnicos';
+import { ResumenSucusales } from '../Models/resumen-sucusales';
 
 @Injectable({
   providedIn: 'root'
@@ -14,6 +15,11 @@ export class UsuarioService {
   //Get All users
   getUsers():Observable<any[]>{
     return this.httpclient.get<any[]>(this.url+'/Technicals');
+  }
+
+  //Get Resume by BranchOffices
+  getResumen():Observable<any[]>{
+    return this.httpclient.get<any[]>(this.url+'/Technicals/resumen');
   }
   //Get users By id
   getUsersById(id:number):Observable<Technicals>{

@@ -20,6 +20,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import {MatRadioModule} from '@angular/material/radio';
 import { ToastrModule } from 'ngx-toastr';
+import { NgxUiLoaderModule } from 'ngx-ui-loader';
 
 import { AppComponent } from './app.component';
 import { MenuComponent } from './Components/menu/menu.component';
@@ -34,6 +35,7 @@ import { DetalleUsuariosLimitadoComponent } from './Components/detalle-usuarios-
 import { CookieService } from 'ngx-cookie-service';
 import { RemisionComponent } from './Components/remision/remision.component';
 import { AddRemissionComponent } from './Components/add-remission/add-remission.component';
+import { ResumenPorSucursalesComponent } from './Components/resumen-por-sucursales/resumen-por-sucursales.component';
 
 const routes :Routes = [
   {path:'', redirectTo: 'Usuarios', pathMatch: 'full'},
@@ -44,6 +46,7 @@ const routes :Routes = [
   {path:'remission', component : RemisionComponent},
   {path:'AddRemissions', component : AddRemissionComponent },
   {path:'editRemission/:id', component : AddRemissionComponent},
+  {path:'ResumeBranch', component : ResumenPorSucursalesComponent},
   {path:'Menu', component: MenuComponent},
   {path:'**', redirectTo: 'Usuarios', pathMatch: 'full'}
 ]
@@ -59,7 +62,8 @@ const routes :Routes = [
     HomeComponent,
     DetalleUsuariosLimitadoComponent,
     RemisionComponent,
-    AddRemissionComponent
+    AddRemissionComponent,
+    ResumenPorSucursalesComponent
   ],
   imports: [
     BrowserModule,
@@ -84,7 +88,13 @@ const routes :Routes = [
     MatButtonToggleModule,
     MatRadioModule,
     MatNativeDateModule,
-    ToastrModule.forRoot()
+    ToastrModule.forRoot({
+      positionClass: 'toast-top-right',
+      closeButton: true,
+      timeOut: 5000,
+      progressBar: true
+    }),
+    NgxUiLoaderModule
   ],
   providers: [CookieService],
   bootstrap: [AppComponent]
