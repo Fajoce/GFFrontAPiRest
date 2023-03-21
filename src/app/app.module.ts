@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http'
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http'
 import {MatMenuModule} from '@angular/material/menu';
 import {MatButtonModule} from '@angular/material/button';
 import { RouterModule, Routes } from '@angular/router';
@@ -38,6 +38,7 @@ import { CookieService } from 'ngx-cookie-service';
 import { RemisionComponent } from './Components/remision/remision.component';
 import { AddRemissionComponent } from './Components/add-remission/add-remission.component';
 import { ResumenPorSucursalesComponent } from './Components/resumen-por-sucursales/resumen-por-sucursales.component';
+import { InterceptorService } from './service/interceptor.service';
 
 const routes :Routes = [
   {path:'', redirectTo: 'Usuarios', pathMatch: 'full'},
@@ -100,7 +101,9 @@ const routes :Routes = [
     NgxSpinnerModule,
   
   ],
-  providers: [CookieService],
+  providers: [
+    {provide: HTTP_INTERCEPTORS, useClass: InterceptorService,multi: true}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
